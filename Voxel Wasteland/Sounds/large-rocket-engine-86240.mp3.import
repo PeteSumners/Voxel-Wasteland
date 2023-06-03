@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/large-rocket-engine-86240.mp3-976ac8f1a8c34f5effd325dac87055b5.mp3str"
+
+[deps]
+
+source_file="res://Sounds/large-rocket-engine-86240.mp3"
+dest_files=[ "res://.import/large-rocket-engine-86240.mp3-976ac8f1a8c34f5effd325dac87055b5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

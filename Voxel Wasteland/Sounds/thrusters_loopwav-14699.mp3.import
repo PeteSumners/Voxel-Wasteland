@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/thrusters_loopwav-14699.mp3-84a82092c569f3d6872c16a0ee2fce4a.mp3str"
+
+[deps]
+
+source_file="res://Sounds/thrusters_loopwav-14699.mp3"
+dest_files=[ "res://.import/thrusters_loopwav-14699.mp3-84a82092c569f3d6872c16a0ee2fce4a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

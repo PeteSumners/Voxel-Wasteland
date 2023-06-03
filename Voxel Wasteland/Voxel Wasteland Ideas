@@ -1,0 +1,127 @@
+weapon vendor NPCs (for weapons and things): PauseUnpause
+- can buy/sell weapons/ammo/armor with these guys
+- random, finite items
+- change their inventory every once in a while
+
+buildables:
+- don't do regular block building
+- have pre-built structures that players can drop
+- then things aren't OP
+- have dirt grenades to fill holes/make other players stuck/protect yourself from explosions and things. don't make dirt grenades suffocate people: just make them surround the immediate area with dirt, excluding enemies (like pocket tanks!)
+
+speaking of tanks...
+Vehicles:
+- buyable/customizable vehicles
+- like planetside
+- can get in a tank
+- or a technical type vehicle
+- or a jetpack
+- or a droppable turret
+- or a rocket! (to space! or at least really high so that you can do an orbital drop in a drop-pod). So, a rocket/drop pod combo. That would actually be lit. You could put a warhead on it or a drop-pod like I was originally saying. 
+- And you could put a drone/weapons in the drop-pod. Or other players. Whatever. ICBM tech + weapons cache + transport. Awesome. 
+- or a plane
+- make them all out of voxels, and have cool explosions for when they blow up. 
+- don't have buildable vehicles: have discrete customization options so things aren't crazy complicated
+
+What else does pocket tanks have?
+- mountain mover (no damage, but levels ground/obstacles): can have it only affect natural ground so that buildable structures stay standing
+- jack hammer
+- skipper
+- range finder bullet things (just have a normal range finder)
+- physics for dirt (dirt falls when there's nothing below it): that's actually important
+
+rescue beacon (for calling a rescue ship)
+non-covert communication (NCC): radio beacon
+very covert communication (VCC): laser beam
+direct/global text chat for saying "[RESCUE SHIP]: REQUEST ACKNOWLEDGED"
+or "Weapons cache found at (-47, 118)!"
+or "Damaged mech found at (342, 400)!"
+or "Air drop coming in 10 minutes at (100, 385). Capture the LZ to take it!"
+
+aircraft
+paragliders
+self-destructing drones
+
+hacking: 
+- can hack into systems if you get physical access to them
+- go into system with pre-programmed commands, or just wing it
+- can use data knife to hack into systems (like titanfall)
+- or you can try radio signals, but that won't give you auto-pwn status
+- commands to implement: cd, ls, edit (to edit files), run (to run files), shutdown (to shutdown system)
+- can program drones to target hackable things with radio signals (like other drones, for instance)
+- data knife is exclusive to players
+- EMPs can shutdown stuff that isn't properly faraday-caged
+Ok, actually, don't do linux-type hacking. Just make "hacking modules" that you can shoot out of a special gun. Different modules have different success chances/hacking types/costs. Drones can also be made resistant (or impervious) to hacking, and if you miss, you'll have to retrieve your module, so be careful! 
+Drones have owners, and the owners have access to a menu that allows you to change the drone's settings. If your drone is hacked, you lose access to your drone! 
+Drones are super vulnerable to EMPs, so watch out! 
+Drones with the "hardwired" attribute can't be hacked. But hardwired drones are more expensive. 
+Hacking modules don't have to hack stuff. They can also just fry a drone's circuits to make it unusable. The success rate for a hacking module depends on its type. More expensive modules have a higher base success rate. Jammer modules can be cheap and relatively successful (for frying a drone), but they don't give you any real control over a drone. 
+
+Shields:
+can have shield modules for players
+or shield modules for drones
+or shield modules for locations/bases!
+can be pierced with explosives/melee weapons/hacking modules (anything slow and massive)
+stop bullets/plasma weapons, though (small/light/fast stuff).
+easy to deactivate with plasma weapons
+totally deactivated by EMPs
+require a power generator. Better generators mean better regen times. Better shields mean higher damage capacity. 
+They glow, so you can't be as sneaky with them. 
+
+Cloak:
+make you invisible (kind of)
+shields will still be visible, so don't use them with a cloaking device
+totally deactivated by EMPs
+
+Drones:
+attached to a single player
+can be customized at a drone factory (or maybe they're just part of a certain loadout)
+options:
+- varying levels of armor for different kinds of weapons: low cal, high cal, explosives
+- tradeoffs for armor: slower movement, higher cost
+- can be upgraded/bought at a drone factory in-game (so you don't have to build a loadout just for a drone: you can get one later)
+- can have multiple drones attached to a player. But cap it at a certain amount (maybe 3 or something) (or maybe 10!) IDK. Test stuff out. 
+
+Loadouts:
+- get a certain amount of cash to build a starting loadout with
+- can earn more money to buy more/better stuff as you progress
+- better stuff costs more. 
+- example: you could build a loadout with like one pistol (cheap), very little and very poor ammo (also cheap), but have an awesome drone sidekick with explosive-grade armor (to protect the drone and allow the player to hide behind it for cover), an awesome power generator (for fast speed), a shield (to make it even harder to kill/hack) and a good gun (because yeah). and then make the drone be like a body guard for the player, just following, dealing with threats, and providing a means of cover. 
+- other example: no drone, but have a rocket launcher + jetpack + cloaking system. deadly
+- other example: none of that, but have a decent weapon, decent armor and a wrench to repair mechs/vehicles with
+- varying levels of armor. affects player mass, which affects player move speed, explosion speed and jetpack accel. 
+
+
+Weapons/equipment (loadouts, cont.):
+- terrain regenerator: player has to stand still to activate it. Regenerates terrain back to its natural state AROUND the player/other entities. Use it to be hide stuff inside terrain (be sneaky) or just to regen ugly terrain (be cool). 
+- terrain digger. dig terrain without explosions. Useful for making tunnels and things. 
+- shootable cameras. Type of cheap drone. Cycle through them like you would any other drone to see what they can see. Can move/change direction for better viewing. Small, so difficult to detect. Combine them with terrain regenerator to be super sneaky. 
+- hacking module. Also type of drone. Use them to disable/take control of other drones. 
+- satellites. Type of drone. Launch them from rockets, and view the map from space. Can also shoot lasers/missiles down to at ground or at other satellites. Can also drop weapons caches/drop pods from space. Shoot them down with lasers/rockets. 
+- x-ray vision. activate it to see players/drones/other stuff through terrain. Attachable to drones. Useful against sneaky players. Also useful for sneaky players. 
+
+Day/night cycle:
+- add this because it's cool
+- add monsters (zombies, other crazy stuff) to come out at night
+- add thermal monoculars/scopes to help players see at night
+- add night vision, too
+
+EMPs:
+- deactivate everything electrical in their range, including friendly stuff (drones, plasma weapons, electrical player stuff like cloaks/shields/terrain regenerators/x-ray, vehicles, etc)
+- super duper expensive
+- wide range
+- really useful for dudes who rely on electrical stuff
+- don't work on players themselves, normal (mechanical) guns, rockets/grenades, NPCs, etc
+- EMP'd stuff can be repaired/reactivated with a wrench. 
+
+Hacking modules:
+- type of drone
+- hack other drones with it
+- totally useless on its own
+- it breaks if it hits anything that isn't a drone, so you better have really good aim
+- expensive
+- will work on enemy vehicles/turrets that aren't hardwired (so you can turn enemy stuff off or even friendly)
+- shoot it out of a special gun
+- can be removed by other players (with a wrench) so that they can retake their stuff
+- if a hacking module hits an object that's already been hacked, both modules will be destroyed, and the object will enter an EMP'd state until it's repaired. 
+- if it hits a "hardwired" object, it'll be destroyed like if it hit the ground.  

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/TimedPhysicsEntity.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Grass Texture 3.jpg" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+
+[node name="GrassBlockEntity" type="KinematicBody"]
+script = ExtResource( 1 )
+should_register = false
+life_time = 7000
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.5, 0.5, 0.5 )
+mesh = SubResource( 2 )

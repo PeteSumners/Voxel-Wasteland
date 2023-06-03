@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rocketthrustmaxx-100019.mp3-cb69900dc1f58ca816bc42be46658dfa.mp3str"
+
+[deps]
+
+source_file="res://Sounds/rocketthrustmaxx-100019.mp3"
+dest_files=[ "res://.import/rocketthrustmaxx-100019.mp3-cb69900dc1f58ca816bc42be46658dfa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
