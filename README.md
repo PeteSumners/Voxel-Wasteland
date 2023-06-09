@@ -3,9 +3,13 @@ I'm working on a Godot project similar to this: https://www.youtube.com/watch?v=
 
 ## Controls
 WASD - move around
+
 Space - jump
+
 Space (in air) - activate/use jetpack
+
 WASD (while jetpack active) - move around in air!
+
 Right-click - throw grenades
 
 ## Quirks
