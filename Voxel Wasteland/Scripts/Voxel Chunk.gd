@@ -1,9 +1,10 @@
 extends StaticBody
 class_name VoxelChunk
 
-# TODO: refactor VoxelChunk code into VoxelGrid code (so that space ships and other vehicles can use VoxelGrid code)
+# TODO: refactor VoxelChunk code into VoxelGrid code (so that space ships and other vehicles (and weapon designs) can use VoxelGrid code)
 # also, draw bounds on vehicle VoxelGrids so that players know how far they can build
 
+# this chunk's horizontal bounding box
 onready var bounds = Rect2(Vector2(global_translation.x, global_translation.z), Vector2.ONE*chunk_width)
 
 enum VoxelType {
@@ -41,12 +42,20 @@ var time_offset # chunk entity update time offset in ms.
 const time_offset_between_chunks = 10 # time between chunk updates from one chunk to the next, in ms
 const loop_width = 16 # width of an update loop in chunks. used to calculate time_offset
 
-# uses bounds to determine if this chunk is within two times taxicab distance from pos
+# uses bounds to determine if this chunk is within two times taxicab distance (mathematical limit on spherical explosions) from pos
 func chunk_within_dst_of_pos(var global_pos, var dst):
-	var pos_2d = Vector2(global_pos.x, global_pos.z)
+	var pos_2d = get_horizontal_pos(global_pos)
 	var bounds_to_check = Rect2(pos_2d - (Vector2.ONE*dst), Vector2.ONE*dst*2)
 	return bounds.intersects(bounds_to_check, true)
-	
+
+# returns the horizontal - (x, z): not y - position of global_pos
+func get_horizontal_pos(var global_pos):
+	return Vector2(global_pos.x, global_pos.z)
+
+# returns whether this chunk contains a given position
+func chunk_contains_position(var global_pos):
+	return bounds.has_point(get_horizontal_pos(global_pos))
+
 func _on_generated_world_seed (world_seed):
 	self.world_seed = world_seed
 	#generate_chunk()
@@ -239,6 +248,12 @@ func _on_explosion(explosion_global_pos, explosion_radius, explosion_speed):
 	if (visible):
 		render_explosion(explosion_local_pos, explosion_radius, explosion_speed, voxel_entities_to_spawn)
 	
+func _on_build(global_pos):
+	if not chunk_contains_position(global_pos): # don't build anything if there's nothing to build
+		return
+	print("building! chunk is at" + str(bounds.position))
+	update_voxel_at_global_pos(global_pos, VoxelType.BEDROCK)
+	
 func render_explosion(var explosion_local_pos, var explosion_radius, var explosion_speed, var voxel_entities_to_spawn):
 	render_chunk()
 	
@@ -264,7 +279,18 @@ func render_explosion(var explosion_local_pos, var explosion_radius, var explosi
 func remove_voxel_from_chunk(i, j, k):
 	update_voxel(i, j, k, VoxelType.EMPTY)
 
+# updates voxel given a global position
+func update_voxel_at_global_pos(global_pos, voxel_type):
+	var local_pos = to_local(global_pos)
+	var i = int(local_pos.x)
+	var j = int(local_pos.y)
+	var k = int(local_pos.z)
+	update_voxel(i, j, k, voxel_type)
+
+# updates the voxel at (i,j,k) (local voxel array coordinates) to be voxel_type. Automatically triggers a chunk render update!
 func update_voxel(i, j, k, voxel_type):
+	# do NOT build outside the voxel chunk
+	if (i >= voxels.size() or j >= voxels[0].size() or k >= voxels[0][0].size()): return
 	voxels[i][j][k] = voxel_type
 	rendered_since_last_update = false
 	

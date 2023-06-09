@@ -16,7 +16,7 @@ func _ready():
 	# don't do anything if you shouldn't register with the world
 	if (not should_register): return
 		
-	connect("register_entity", world, "register_entity") # make world call its register_entity() when entity's register_entity signal is emitted
+	connect("register_entity", world, "register_entity") # make world call its register_entity() method when entity's register_entity signal is emitted
 	connect("unregister_entity", world, "unregister_entity")
 	emit_signal("register_entity", self, render_dst, make_chunks_visible) # register the entity with the world
 

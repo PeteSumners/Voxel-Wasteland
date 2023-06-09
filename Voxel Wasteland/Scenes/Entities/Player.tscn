@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Entities/Explosives/Grenade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/Bedrock Texture 1.jpg" type="Texture" id=3]
 [ext_resource path="res://Textures/Voxel Test Texture.jpg" type="Texture" id=4]
 [ext_resource path="res://Textures/Voxel Test Texture 2.jpg" type="Texture" id=5]
+[ext_resource path="res://Scenes/Voxel Chunks/VoxelPlaceholder.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=7]
 
@@ -80,3 +81,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 [node name="MeshInstance" type="MeshInstance" parent="Body/Legs/Hips/Right Hip/Right Leg"]
 mesh = SubResource( 2 )
 skeleton = NodePath("../../../..")
+
+[node name="Voxel" parent="." instance=ExtResource( 6 )]

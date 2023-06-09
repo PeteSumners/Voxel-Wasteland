@@ -8,6 +8,8 @@ export var wall_friction = 20
 
 signal collided
 
+var is_physics_active = true # whether this PhysicsEntity should do physics processing
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,7 +21,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity.y -= gravity * delta # apply gravity
+	if (not is_physics_active):
+		return
+		
 	velocity -= velocity * drag * delta # apply drag
 	velocity = move_and_slide(velocity, Vector3.UP) # do the actual movement
 	#move_and_collide(velocity * delta)
@@ -27,7 +31,12 @@ func _physics_process(delta):
 	
 	# friction calculations
 	if (is_on_ceiling() or is_on_floor()):
-		velocity -= velocity.normalized() * floor_friction * delta
+		if (velocity.length_squared() > .1): # don't move horizontally if only moving by a very little
+			velocity -= velocity.normalized() * floor_friction * delta
+		else:
+			velocity = Vector3.ZERO
+	
+	velocity.y -= gravity * delta # apply gravity
 	
 	if (is_on_wall()):
 		velocity -= velocity.normalized() * wall_friction * delta

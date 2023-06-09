@@ -10,6 +10,7 @@ var world_seed = 0
 signal generated_world_seed
 signal update_registry
 signal explosion
+signal build
 
 var entity_registry = []
 
@@ -20,13 +21,16 @@ func _ready():
 	randomize()
 	world_seed = randi()
 	generate_world()
-	pass # Replace with function body.
 
 # TODO: explosion damage
 func _on_explosion(global_position, radius, speed):
 	emit_signal("explosion", global_position, radius, speed)
 
-# signal for registering entities in VoxelChunks
+func _on_build(global_position):
+	emit_signal("build", global_position)
+	print("trying to build at " + str(global_position))
+
+# signal for registering entities in the world
 func register_entity(entity, render_dst, make_chunks_visible):
 	entity_registry.append([entity, render_dst, make_chunks_visible])
 	connect("explosion", entity, "_on_explosion")
@@ -45,6 +49,7 @@ func generate_world():
 			connect("generated_world_seed", voxel_chunk, "_on_generated_world_seed")
 			connect("update_registry", voxel_chunk, "update_registry")
 			connect("explosion", voxel_chunk, "_on_explosion")
+			connect("build", voxel_chunk, "_on_build")
 			add_child(voxel_chunk)
 	emit_signal("generated_world_seed", world_seed)
 	emit_signal("update_registry", entity_registry)
