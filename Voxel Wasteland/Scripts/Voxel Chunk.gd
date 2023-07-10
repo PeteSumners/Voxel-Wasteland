@@ -217,7 +217,7 @@ func render_chunk():
 #func _process(delta):
 #	pass
 
-func _on_explosion(explosion_global_pos, explosion_radius, explosion_speed):
+func _on_explosion(explosion_global_pos, explosion_radius, explosion_momentum):
 	# don't do anything if this chunk isn't being exploded
 	if not chunk_within_dst_of_pos(explosion_global_pos, explosion_radius):
 		return
@@ -246,15 +246,15 @@ func _on_explosion(explosion_global_pos, explosion_radius, explosion_speed):
 					remove_voxel_from_chunk(i, j, k)
 	
 	if (visible):
-		render_explosion(explosion_local_pos, explosion_radius, explosion_speed, voxel_entities_to_spawn)
+		render_explosion(explosion_local_pos, explosion_radius, explosion_momentum, voxel_entities_to_spawn)
 	
 func _on_build(global_pos):
 	if not chunk_contains_position(global_pos): # don't build anything if there's nothing to build
 		return
 	print("building! chunk is at" + str(bounds.position))
-	update_voxel_at_global_pos(global_pos, VoxelType.BEDROCK)
+	update_voxel_at_global_pos(global_pos, VoxelType.GRASS)
 	
-func render_explosion(var explosion_local_pos, var explosion_radius, var explosion_speed, var voxel_entities_to_spawn):
+func render_explosion(var explosion_local_pos, var explosion_radius, var explosion_momentum, var voxel_entities_to_spawn):
 	render_chunk()
 	
 	# spawn entities for lost voxels
@@ -267,13 +267,13 @@ func render_explosion(var explosion_local_pos, var explosion_radius, var explosi
 				continue
 			VoxelType.EMPTY:
 				continue
-		if entity != null:
+		if entity != null: # set up randomized voxel momentums of magnitude between 0 and explosion_momentum (this is NOT a normal entity explosion)
 			entity.translation = Vector3(e[1], e[2], e[3])
 			var entity_center = entity.translation + (Vector3.ONE * .5)
 			var start_dir = (entity_center - explosion_local_pos).normalized() # inconsistent horizontal velocity
 			start_dir.y = max(1, abs(start_dir.y)) # semi-consistent y velocity
 			start_dir = start_dir.normalized()
-			entity.velocity = start_dir * explosion_speed * randf()
+			entity.change_momentum(start_dir * explosion_momentum * randf())
 			add_child(entity)
 
 func remove_voxel_from_chunk(i, j, k):

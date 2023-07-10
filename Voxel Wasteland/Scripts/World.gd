@@ -23,8 +23,8 @@ func _ready():
 	generate_world()
 
 # TODO: explosion damage
-func _on_explosion(global_position, radius, speed):
-	emit_signal("explosion", global_position, radius, speed)
+func _on_explosion(global_position, radius, explosion_momentum):
+	emit_signal("explosion", global_position, radius, explosion_momentum)
 
 func _on_build(global_position):
 	emit_signal("build", global_position)
@@ -57,5 +57,5 @@ func generate_world():
 func _physics_process(delta):
 	# TODO: 
 	# get horizontal distance from player, spawn/despawn chunks based on that. 
-	# Then save voxel data for each chunk. 
+	# Then save voxel data for each chunk into permanent memory (hard drive: not RAM). 
 	pass

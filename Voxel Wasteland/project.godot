@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entity.gd"
 }, {
-"base": "TimedPhysicsEntity",
+"base": "Item",
 "class": "Explosive",
 "language": "GDScript",
 "path": "res://Scripts/Explosive.gd"
+}, {
+"base": "TimedPhysicsEntity",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Scripts/Item.gd"
+}, {
+"base": "PhysicsEntity",
+"class": "ItemUser",
+"language": "GDScript",
+"path": "res://Scripts/ItemUser.gd"
 }, {
 "base": "Entity",
 "class": "PhysicsEntity",
@@ -42,6 +52,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Entity": "",
 "Explosive": "",
+"Item": "",
+"ItemUser": "",
 "PhysicsEntity": "",
 "TimedPhysicsEntity": "",
 "VoxelChunk": "",

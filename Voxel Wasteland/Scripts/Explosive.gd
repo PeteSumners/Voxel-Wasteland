@@ -1,6 +1,7 @@
-extends TimedPhysicsEntity
+extends Item
 class_name Explosive
 
+# TODO: bouncy explosive (doesn't delete itself until 2-3 explosions)
 # have two timers for all explosives: one to blow it up after it hits something, and one to destroy it after a certain time
 
 signal explosion
@@ -15,16 +16,20 @@ func _ready():
 	connect("collided", self, "_on_collision")
 
 func _exit_tree():
-	explode()
+	#explode() # can't just explode every time this item gets re-parented (duplicated/deleted)
+	pass
 
-func _on_collision(): # try to start the explosive's timer when it hits something
-	start_countdown()
+func _on_collision(): # explode when a hot explosive hits something
+	if (triggered):
+		explode()
 
 func explode():
 	spawn_explosion_sound()
 	emit_signal("explosion", Vector3(global_translation.x, global_translation.y, global_translation.z), explosion_radius, explosion_speed)
+	queue_free()
 
 func spawn_explosion_sound():
 	var explosion_audio = explosion_audio_scene.instance()
 	world.add_child(explosion_audio)
 	explosion_audio.global_translation = global_translation
+	
