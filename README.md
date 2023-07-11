@@ -11,4 +11,4 @@ Right-click - throw grenades/use jetpack
 F - build blocks
 
 ## Quirks
-You can't strafe in midair without using a jetpack
+You can't strafe in midair
