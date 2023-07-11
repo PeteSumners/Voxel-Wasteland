@@ -6,13 +6,9 @@ WASD - move around
 
 Space - jump
 
-Space (in air) - activate/use jetpack
-
-WASD (while jetpack active) - move around in air!
-
-Right-click - throw grenades
+Right-click - throw grenades/use jetpack
 
 F - build blocks
 
 ## Quirks
-You can't strafe in midair without activating your jetpack
+You can't strafe in midair without using a jetpack
