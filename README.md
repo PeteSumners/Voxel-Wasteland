@@ -12,3 +12,5 @@ F - build blocks
 
 ## Quirks
 You can't strafe in midair
+
+Voxel chunks are made up of a bunch of entities (instead of a single mesh with various textures). It was simpler to code that way, but performance isn't great at the moment. I'll fix it to use the Marching Cubes algorithm soon. 
