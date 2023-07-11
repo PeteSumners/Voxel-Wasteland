@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sounds/hq-explosion-6288.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Explosion Audio.gd" type="Script" id=2]
+
+[node name="Grenade Audio Player" type="AudioStreamPlayer3D"]
+stream = ExtResource( 1 )
+unit_db = 20.0
+script = ExtResource( 2 )

@@ -2,6 +2,8 @@ extends TimedPhysicsEntity
 class_name Item
 
 # TODO:
+# DURABILITY BARS
+# item descriptions
 # droppable items
 # throwable items (x amt of force in a certain direction) with different item masses
 # main use (lmb), alt use (rmb)
@@ -21,15 +23,22 @@ class_name Item
 # (players have mass, too. Add that to your physics calculations.) 
 
 var item_user = null
+
 onready var camera = get_viewport().get_camera()
+onready var dormant_sprite = $"Dormant Sprite" # sprite to use when not triggered
+onready var triggered_sprite = $"Triggered Sprite" # sprite to use when triggered
+onready var audio_player = $'AudioStreamPlayer3D'
 signal item_pickup
 
 var can_pickup = false # whether this item can currently be picked up
 var triggered = false
 
+export var hold_rotation_degrees = Vector3(0,-30,0) # rotation of item when it's being held
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	can_pickup = false
+	update_sprites()
 	start_countdown()
 	#print('being held: ' + str(item_user != null))
 	#print('last release: ' + str(last_release))
@@ -39,17 +48,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	look_at(camera.global_translation, Vector3.UP)
-#	pass
+	if (item_user == null): # item is floating around in the world, not being held
+		look_at(camera.global_transform.origin, camera.global_transform.basis.y)
+		#rotation_degrees = Vector3(0, rotation_degrees.y, 0)
+	else:
+		rotation_degrees = hold_rotation_degrees
 
 func timeout():
+	.timeout()
 	can_pickup = true
+	print('timeout: ' + str(name))
 
 func _on_Area_body_entered(body):
-	if (not can_pickup): # don't try picking up this item until it can be picked up again
+	if (not ((can_pickup) and (item_user == null))): # don't try picking up this item until it can be picked up again AND it's out in the world (without an item_user)
 		return
 		
-	if ((item_user == null) and (body.is_in_group("ItemUsers"))):
+	if (body.is_in_group("ItemUsers")):
 		body.try_pickup_item(self)
 	pass # Replace with function body.
 
@@ -59,11 +73,12 @@ func pickup(item_user):
 		print("Why are you trying to pick up an item that can't be picked up?")
 		return
 
+	# create the duplicate item
 	var picked_up_item = self.duplicate()
-	picked_up_item.item_user = item_user # set item_user so that the picked_up_item knows how to act later
-	
 	
 	# pick up the duplicate item
+	picked_up_item.item_user = item_user # set item_user so that the picked_up_item knows how to act later
+	picked_up_item.can_pickup = false
 	item_user.items.append(picked_up_item)
 	item_user.item_hold_node.add_child(picked_up_item)
 	picked_up_item.transform.origin = Vector3.ZERO
@@ -74,16 +89,46 @@ func pickup(item_user):
 # trigger's this item's behavior
 func trigger():
 	triggered = true
+	audio_player.play()
+	update_sprites()
+	print('t!!!!!')
+
+# update sprites based on whether the item is currently triggered
+func update_sprites():
+	dormant_sprite.visible = not triggered
+	triggered_sprite.visible = triggered
+
+func untrigger():
+	triggered = false
+	audio_player.stop()
+	update_sprites()
+	print('unt!!!')
+
+# trigger/untrigger
+func toggle_trigger():
+	if (triggered):
+		untrigger()
+	else:
+		trigger()
+
+# throw the item, and return the thrown duplicate
+func throw(item_index):
+	item_user.remove_item(item_index) # let item_user know this Item is leaving
 	
-func use():
 	var used_item = self.duplicate()
 	used_item.item_user = null
-	used_item.trigger() # actually USE (trigger) the item now in the world
 	
 	world.add_child(used_item)
 	used_item.global_translation = item_user.item_release_node.global_translation
 	used_item.velocity = velocity # start item at same base velocity
-	used_item.change_momentum(-item_user.item_release_node.global_transform.basis.z.normalized() * item_user.item_throw_impulse) # throw the grenade
+	used_item.change_momentum(item_user.item_release_node.global_transform.basis.z.normalized() * item_user.item_throw_impulse) # throw the grenade
 	
 	queue_free() # remove one's self from the equation
+	return used_item
+	
+func use(item_index):
+	trigger()
+	
+func unuse(item_index):
+	untrigger()
 	

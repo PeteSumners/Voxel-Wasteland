@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Entities/Explosives/Grenade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/Bedrock Texture 1.jpg" type="Texture" id=3]
 [ext_resource path="res://Textures/Voxel Test Texture.jpg" type="Texture" id=4]
 [ext_resource path="res://Textures/Voxel Test Texture 2.jpg" type="Texture" id=5]
@@ -34,7 +33,6 @@ script = ExtResource( 1 )
 make_chunks_visible = true
 wall_friction = 0
 mass = 2
-grenade_scene = ExtResource( 2 )
 
 [node name="Head" type="CollisionShape" parent="."]
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.25, 0 )
@@ -42,9 +40,13 @@ shape = SubResource( 7 )
 
 [node name="Camera" type="Camera" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-far = 1000.0
+far = 10000.0
 
 [node name="Item Release Node" type="Spatial" parent="Head/Camera"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Item Hold Node" type="Spatial" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -0.25, -1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Head"]
 mesh = SubResource( 8 )
@@ -58,9 +60,6 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0, 0.5, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Body/Torso"]
 mesh = SubResource( 5 )
-
-[node name="Item Hold Node" type="Spatial" parent="Body/Torso"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669237, 1.05221, -5 )
 
 [node name="Legs" type="Spatial" parent="Body"]
 transform = Transform( 0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0, 0, 0 )

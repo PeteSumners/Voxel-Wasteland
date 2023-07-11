@@ -27,7 +27,12 @@ func try_pickup_item(item):
 	
 	item.pickup(self)
 	
-	print(items)
+	print('adding item!')
+
+# remove an item of item_index from items
+func remove_item(item_index):
+	items.remove(item_index)
+	print('removing item!')
 
 # use an item
 # TODO: change_momentum instead of directly setting grenade speed
@@ -35,11 +40,15 @@ func use_item(item_index = 0):
 	if (items.size() <= 0): # can't use an item if you don't have any items!
 		return
 	
-	#item.use()
 	var item = items[item_index]
-	item.use() # let the item handle its own use cases
-	items.remove(item_index)
-	print(items)
+	item.use(item_index) # let the item handle its own use cases
+
+func unuse_item(item_index = 0):
+	if (items.size() <= 0): # can't use an item if you don't have any items!
+		return
+	
+	var item = items[item_index]
+	item.unuse(item_index) # let the item handle its own use cases
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

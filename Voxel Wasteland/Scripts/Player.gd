@@ -8,8 +8,6 @@ extends ItemUser
 
 signal build
 
-export (PackedScene) var grenade_scene
-
 # to keep the player in bounds
 export var minX = 1
 export var maxX = 511
@@ -55,7 +53,11 @@ func _input(event):
 	# use items!
 	if (Input.is_action_just_pressed("rmb")):
 		use_item()
+	if (Input.is_action_just_released("rmb")):
+		unuse_item()
 
+# TODO:
+# forget all this weird strafing code, and turn the jetpack into an item!
 # move the player with a jetpack
 func jetpack_move(delta):
 	if (not has_jetpack): return
@@ -103,6 +105,7 @@ func update_horizontal_input_direction():
 	horizontal_input_direction = horizontal_input_direction.normalized()
 
 func _physics_process(delta):
+	
 	update_horizontal_input_direction()
 	animate_legs(delta)
 	jetpack_move(delta)

@@ -19,9 +19,16 @@ func _exit_tree():
 	#explode() # can't just explode every time this item gets re-parented (duplicated/deleted)
 	pass
 
-func _on_collision(): # explode when a hot explosive hits something
+func _on_collision(): # explode when a triggered explosive hits something
 	if (triggered):
 		explode()
+
+func timeout(): # don't allow item pickup on timeout if triggered
+	if (not triggered):
+		.timeout()
+
+func use(item_index):
+	throw(item_index).trigger() # throw AND trigger the explosive
 
 func explode():
 	spawn_explosion_sound()
