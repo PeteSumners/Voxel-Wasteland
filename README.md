@@ -14,3 +14,5 @@ F - build blocks
 You can't strafe in midair
 
 Voxel chunks are made up of a bunch of entities (instead of a single mesh with various textures). It was simpler to code that way, but performance isn't great at the moment. I'll fix it to use the Marching Cubes algorithm soon. 
+
+You can only carry one item (reliably) at a time. Carrying multiple items isn't supported right now and can lead to some strange glitches. 
