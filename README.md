@@ -20,5 +20,6 @@ Look around when you first spawn in. The character's in a kinda wonky direction.
 You should see a grey circle on the ground and a grey jetpack, too. You can pick up either, but I haven't added code to throw away the jetpack, so if you want to use the grenade, just pick it up first. Otherwise, Alt+F4 and restart the game to reset it. 
 
 ## Running the Windows Executable
+You can get the Windows executable here: https://1drv.ms/f/s!Ap-dLDKXjWaXo2wpLHH2YX7OYlAW?e=KzxmVs
 You need the .exe and the .pck file in the same directory.
 
