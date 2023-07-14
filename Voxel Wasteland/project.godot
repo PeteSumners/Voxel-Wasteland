@@ -42,12 +42,12 @@ _global_script_classes=[ {
 "base": "StaticBody",
 "class": "VoxelChunk",
 "language": "GDScript",
-"path": "res://Scripts/Voxel Chunk.gd"
+"path": "res://Scripts/VoxelChunk.gd"
 }, {
 "base": "Node",
 "class": "VoxelWorld",
 "language": "GDScript",
-"path": "res://Scripts/World.gd"
+"path": "res://Scripts/VoxelWorld.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",

@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Entities/Items/Firearms/P222.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Entities/Items/Firearms/Gun Bench.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Entities/Items/Jetpack.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Entities/Items/Explosives/Grenade.tscn" type="PackedScene" id=6]
 
@@ -13,17 +11,9 @@
 transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 100, 0 )
 
 [node name="World" parent="." instance=ExtResource( 1 )]
-world_width = 16
-
-[node name="P222" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, 10 )
-is_controlled = true
-
-[node name="Spatial" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2 )
 
 [node name="Grenade" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 8, 10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8, 8 )
 
 [node name="Jetpack" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 10, 8 )

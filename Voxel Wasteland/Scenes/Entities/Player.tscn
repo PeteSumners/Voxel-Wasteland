@@ -40,7 +40,6 @@ shape = SubResource( 7 )
 
 [node name="Camera" type="Camera" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-far = 10000.0
 
 [node name="Item Release Node" type="Spatial" parent="Head/Camera"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
